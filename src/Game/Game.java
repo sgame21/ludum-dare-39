@@ -81,7 +81,7 @@ public class Game  extends Canvas implements Runnable{
 		addMouseMotionListener(input);
 		this.topButton = new Boundaries(new Vector(550, 200), 200, 32);
 		this.bottomButton = new Boundaries(new Vector(570, 300), 100, 32);
-		gameState = GameState.END;
+		gameState = GameState.GAME;
 		inisialize();
 	}
 	
@@ -140,7 +140,7 @@ public class Game  extends Canvas implements Runnable{
 	
 	private void update() {
 		if(gameState == GameState.END) {
-			if(timer >= 60 * 60 * 60 * 2) {
+			if(timer >= 60 * 60 * 20) {
 				updateEnd(true);
 				this.won = true;
 			}
@@ -160,6 +160,7 @@ public class Game  extends Canvas implements Runnable{
 					this.arrivalMessage = getArrivalMessage();
 					this.textBox = true;
 					this.ship.energy -= 40;
+					this.ship.fuelMissions = 2;
 					if(systemType == 7) {
 						Random r = new Random(System.currentTimeMillis());
 						int n = r.nextInt(11);
@@ -335,10 +336,10 @@ public class Game  extends Canvas implements Runnable{
 		font.write("Energy: " + this.ship.energy + "%", 0, 0, g);
 		font.write("Oxygen: " + this.ship.oxygen + "%", 0, 50, g);
 		font.write("Water: " + this.ship.water + "%", 0, 100, g);
-		font.write("Food: " + this.ship.water + "%", 0, 150, g);
+		font.write("Food: " + this.ship.food + "%", 0, 150, g);
 		if(this.humanSelected >= 0) { 
 			font.write("Task: " + this.crew[humanSelected].currentTask, 0, 600, g);
-			font.write("Task: " + this.crew[humanSelected].stamina + "%", 0, 650, g);
+			font.write("Stamina: " + this.crew[humanSelected].stamina + "%", 0, 650, g);
  
 		}
 		else {

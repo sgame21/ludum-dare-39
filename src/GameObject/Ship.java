@@ -92,7 +92,7 @@ public class Ship extends GameObject {
 	
 	private void updateMachines() {
 		for(Machine m : machines) {
-			if(!m.isBroken && !m.isBuilt) {
+			if(!m.isBroken && m.isBuilt) {
 				if(m.machineType == Machine.MachineType.ENERGY) {
 					if(m.isWorked && this.refiendFuel > 10) {
 						this.energy += 6;
